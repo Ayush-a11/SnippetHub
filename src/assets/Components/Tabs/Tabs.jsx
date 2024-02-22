@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import CurrentPath from '../Tabs/Tabs.jsx'
+import Snippet from '../CommonUtility/Snippet.jsx';
 function Tabs() {
 
 	const [currentTab, setCurrentTab] = useState('Tab1');
@@ -20,20 +21,20 @@ function Tabs() {
 
 
   return (
-	<>
-	<h1 className="text-purple-500 text-4xl">Dynamic Tab</h1>
-	<div className="bg-accent text-textColor  rounded-xl transition-transform duration-300">
+	<div className="w-11/12 h-auto  m-auto  rounded-xl ">
+	<h1 className="bg-black text-purple-500 text-4xl  border-accent p-1 ">Dynamic Tab</h1>
+	<div className="bg-accent text-textColor   transition-transform duration-300">
 	<div className="bg-accent flex justify-between text-gray-300 space-x-4 ml-2 ">
 		<div>
 		{tabObj.map((item)=>(
-		<button key={item.name} type="button" className={`${currentTab==item.name?'border-b-2 border-purple-500':null} p-2 hover:text-white`} 
+		<button key={item.name} type="button" className={` relative z-10 ${currentTab==item.name?'border-b-2 border-purple-500':null} p-2 hover:text-white`} 
 		onClick={()=>setCurrentTab(item.name)}>{item.name}</button>
 		))}
 		</div>
 
-		<button className={`${currentTab=='Snip'?'border-b-2 border-purple-500':null}`} onClick={()=>setCurrentTab('Snip')}>Snippet {'</>'}</button>
+		<button className={`relative z-10 ${currentTab=='Snip'?'border-b-2 border-purple-500':null}`} onClick={()=>setCurrentTab('Snip')}>Snippet {'</>'}</button>
 	</div>
-	<hr className="border-2 border-black"/>
+	<hr className=" relative -top-1 border-2 border-black"/>
 	<div>
 		{
 			tabObj.map((item)=>(
@@ -43,12 +44,13 @@ function Tabs() {
 		}
 		{
 			currentTab==='Snip' &&
-						<div>Code Snippet</div>
+						<div><Snippet code='<h1>hello world</h1>'/></div>
 		}
 	</div>
 	</div>
-	</>
+	</div>
   )
 }
 
 export default Tabs
+
