@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-function ResponsiveSlideShow() {
+function ResponsiveSlideShow({devMode=false}) {
 	const imageArr = [
 		{
 			id: 'Game1',
@@ -22,7 +22,7 @@ function ResponsiveSlideShow() {
 
 	const [currentTab, setCurrentTab] = useState(imageArr[0].id)
 	const [CurrentIndex,setCurrentIndex] = useState(0)
-	console.log(CurrentIndex,imageArr.length)
+	// console.log(CurrentIndex,imageArr.length)
 	useEffect(()=>{
 		if(currentTab!='Snip'){
 		const interval= setInterval(()=>{
@@ -34,42 +34,42 @@ function ResponsiveSlideShow() {
 	},[])
 
 	return (
-		<div className=" w-11/12 h-auto  m-auto  rounded-xl ">
+		<div className="relative w-11/12 m-auto rounded-xl ">
 			<h1 className="bg-black text-purple-500 text-4xl  border-accent p-1 ">Responsive SlideShow</h1>
-			<div className="flex justify-end bg-accent text-textColor   transition-transform duration-300">
+			{devMode &&
+			<div className="flex justify-end bg-accent text-textColor p-2  transition-transform duration-300">
 				<button className={`relative z-10 ${currentTab == 'Snip' ? 'border-b-2 border-purple-500' : null}`} onClick={() => setCurrentTab('Snip')}>Snippet {'</>'}</button>
 			</div>
+			}	
 
 			<hr className=" relative -top-1 border-2 border-black" />
 			<div>
-				
-					<div>
-						<img src={imageArr[CurrentIndex].img} className={` w-full h-96 transition-transform ease-in-out`} />
+				<img src={imageArr[CurrentIndex].img} className={`md:w-full md:h-96 transition-transform ease-in-out`} />
 
-					</div>
-				<div className='relative bottom-6 w-full flex flex-col '>
-				<div className="w-full relative bottom-8 flex items-center justify-center space-x-2 ">
+			</div>
+				<div className='absolute top-12 w-full flex flex-col '>
+				<div className=" flex justify-between w-full h-full" >
+					<button onClick={()=>setCurrentIndex((index)=>index>0?index-1:imageArr.length-1)} className='hover:opacity-70 opacity-0 w-6/12 h-96 bg-black text-purple-500 text-8xl'>{'<'}</button>
+					<div className=" flex items-end justify-center w-3/12 space-x-2 ">
 					{imageArr.map((item,index) => (
 						
 						<div key={item.id} className={` ${currentTab != 'Snip' ? 'block' : 'hidden'} `} >
-							<button className={` ${imageArr[CurrentIndex].id == item.id ? 'bg-purple-500' : 'bg-white'} size-4  rounded-full`}
+							<button key={item.id} className={`cursor-pointer ${imageArr[CurrentIndex].id == item.id ? 'bg-purple-500' : 'bg-white'} size-4  rounded-full`}
 								onClick={() =>setCurrentIndex(index) }>
 							</button>
 						</div>
 
 
 					))}
+					</div>
+					<button onClick={()=>setCurrentIndex((index)=>index<imageArr.length-1?index+1:0)} className='hover:opacity-70 opacity-0	w-6/12 h-96 bg-black text-purple-500 text-8xl'>{'>'}</button>
+					
+				</div>
+				
 				
 				</div>
-				<div className="bottom-96 flex justify-between relative w-full h-full space-x-2" >
-					<button onClick={()=>setCurrentIndex((index)=>index>0?index-1:imageArr.length-1)} className='hover:opacity-90 opacity-0 w-1/2 h-96 bg-black text-purple-500 text-8xl'>{'<'}</button>
-					<button onClick={()=>setCurrentIndex((index)=>index<imageArr.length-1?index+1:0)} className='hover:opacity-90 opacity-0	w-1/2 h-96 bg-black text-purple-500 text-8xl'>{'>'}</button>
-
-					</div>
-				</div>
+				
 			</div>
-
-		</div>
 	)
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import CurrentPath from '../Tabs/Tabs.jsx'
 import Snippet from '../CommonUtility/Snippet.jsx';
-function Tabs() {
+function Tabs({devMode=false}) {
 
 	const [currentTab, setCurrentTab] = useState('Tab1');
 	const tabObj =[
@@ -31,20 +31,23 @@ function Tabs() {
 		onClick={()=>setCurrentTab(item.name)}>{item.name}</button>
 		))}
 		</div>
-
+		
+		{devMode &&
 		<button className={`relative z-10 ${currentTab=='Snip'?'border-b-2 border-purple-500':null}`} onClick={()=>setCurrentTab('Snip')}>Snippet {'</>'}</button>
-	</div>
+	}
+		</div>
+		
 	<hr className=" relative -top-1 border-2 border-black"/>
 	<div>
 		{
 			tabObj.map((item)=>(
 			
-				<div className={`${currentTab==item.name?'block':'hidden'}`}>{item.text}</div>
+				<div  key={item.name} className={`${currentTab==item.name?'block':'hidden'}`}>{item.text}</div>
 			))
 		}
 		{
 			currentTab==='Snip' &&
-						<div><Snippet code='<h1>hello world</h1>'/></div>
+				<div><Snippet code='<h1>hello world</h1>'/></div>
 		}
 	</div>
 	</div>
