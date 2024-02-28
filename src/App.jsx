@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
 import './App.css'
-import Tabs from './assets/Components/Tabs/Tabs'
-import ResponsiveSlideShow from './assets/Components/ResponsiveSlideShow/ResponsiveSlideShow'
-import TypingEffect from './assets/Components/TypingEffect/TypingEffect'
-import LeftMenuBar from './assets/Components/LeftMenuBar/LeftMenuBar'
+import Tabs from './Components/Tabs/Tabs'
+import ResponsiveSlideShow from './Components/ResponsiveSlideShow/ResponsiveSlideShow'
+import TypingEffect from './Components/TypingEffect/TypingEffect'
+import LeftMenuBar from './Components/LeftMenuBar/LeftMenuBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons'
 
