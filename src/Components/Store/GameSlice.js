@@ -10,15 +10,17 @@ const GameSlice = createSlice({
 	initialState,
 	reducers:{
 		setData(state,action){
-			state.data=action.payload
+			state.data=action.payload;
+			state.Current=action.payload;
 		},
 		clearData(state){
 			state.data=null;
+			state.Current=null;
 		}
 	}
 })
 
-const {setData,clearData} =GameSlice.actions;
+export const {setData,clearData} =GameSlice.actions;
 
 const reducers= GameSlice.reducer;
 export default reducers

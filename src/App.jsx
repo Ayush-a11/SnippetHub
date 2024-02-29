@@ -7,6 +7,7 @@ import TypingEffect from './Components/TypingEffect/TypingEffect'
 import LeftMenuBar from './Components/LeftMenuBar/LeftMenuBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons'
+import TrendingGame from './Components/TrendingGame/TrendingGame'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,6 +26,7 @@ function App() {
       <div className="flex-1 h-full bg-black  ">
       <ResponsiveSlideShow devMode={devMode}/>
       <Tabs devMode={devMode}/>
+      <TrendingGame devMode={devMode}/>
       </div>
     </div>
     </div>
