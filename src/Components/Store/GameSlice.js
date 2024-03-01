@@ -6,7 +6,7 @@ const initialState= {
 }
 
 const GameSlice = createSlice({
-	name:'Game',
+	name:'Movie',
 	initialState,
 	reducers:{
 		setData(state,action){
