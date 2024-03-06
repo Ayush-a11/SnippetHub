@@ -25,7 +25,7 @@ function TrendingMovie({devMode=false}) {
 	// })
   return (
 	<div className="relative w-11/12 m-auto rounded-xl ">
-			<h1 className="bg-black text-purple-500 text-4xl  border-accent p-1 ">Responsive SlideShow</h1>
+			<h1 className="bg-black text-purple-500 text-4xl  border-accent p-1 ">Trending Movies</h1>
 			{devMode &&
 			<div className="flex justify-end bg-accent text-textColor p-2  transition-transform duration-300">
 				<button className={`relative z-10 ${currentTab == 'Snip' ? 'border-b-2 border-purple-500' : null}`} onClick={() => setCurrentTab('Snip')}>Snippet {'</>'}</button>
@@ -33,12 +33,12 @@ function TrendingMovie({devMode=false}) {
 			}	
 
 			<hr className=" relative -top-1 border-2 border-black" />
-			<div className='grid grid-cols-3 bg-red-500'>
+			<div className='grid grid-cols-3 bg-black space-x-10 space-y-10 m-auto'>
 				{data.results && data.results.map((item)=>(
-				<div key={item?.id} className="card"> 	
-				<img src={`https://image.tmdb.org/t/p/original${item?.poster_path}`}
-				className='size-40'></img>
-				<h1>{item?.original_title}</h1>
+				<div key={item?.id} className="card bg-opacity-90 bg-accent shadow-xl hover:scale-110 transition-transform duration-300"> 	
+				<img className="bg-cover size-40" src={`https://image.tmdb.org/t/p/original${item?.poster_path}`}
+			></img>
+				<h1 className='text-textColor'>{item?.original_title}</h1>
 				</div>
 				))
 				}
