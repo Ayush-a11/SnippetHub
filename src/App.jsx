@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons'
 import TrendingMovie from './Components/TrendingMovies/TrendingMovies'
 import Accordion from './Components/Accordion/Accordion'
+import Header from './Components/Header/Header'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,7 +17,7 @@ function App() {
 
   return (
     <div className="flex flex-col w-full h-full bg-black">
-
+      <Header/>
       <button className="text-textColor"onClick={()=>setDevMode((prev)=>!prev)} ><FontAwesomeIcon className='text-purple-500 text-lg scale-125' icon={devMode?faToggleOn:faToggleOff}/>   Dev Mode</button>
       
       <TypingEffect devMode={devMode}/>
