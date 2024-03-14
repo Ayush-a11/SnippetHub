@@ -10,6 +10,7 @@ import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons'
 import TrendingMovie from './Components/TrendingMovies/TrendingMovies'
 import Accordion from './Components/Accordion/Accordion'
 import Header from './Components/Header/Header'
+import Footer from './Components/Footer/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,6 +33,7 @@ function App() {
       <TrendingMovie devMode={devMode}/>
       </div>
     </div>
+    <Footer/>
     </div>
   )
 }

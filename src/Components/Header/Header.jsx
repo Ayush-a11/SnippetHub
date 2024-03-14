@@ -17,16 +17,16 @@ function Header() {
 	<div className={`bg-accent transition-transform duration-300 h-${height} text-purple-500 p-4 font-mono font-bold`}> 
 		<nav className="cursor-pointer flex justify-between">
 		<FontAwesomeIcon className='text-3xl' icon={faCentercode}/>
-			<ul className={`space-x-4 sm:flex ${height==14?'hidden':'flex-col '}  hover:text-purple-400`}>		
-				<li>Home</li>
-				<li>Contact Us</li>
-				<li>Write To Us</li>
+			<ul className={`space-x-4 sm:flex ${height==14?'hidden':'flex-col '} `}>		
+				<li className=' hover:text-purple-100'>Home</li>
+				<li className=' hover:text-purple-100'>Contact Us</li>
+				<li className=' hover:text-purple-100'>Write To Us</li>
 			</ul>
 		<div>
 			
 			<button className="sm:hidden" onClick={toggleHeight} ><FontAwesomeIcon icon={faBars}/></button> &nbsp;
-			<button>Login</button>&nbsp;
-			<button>SignUp</button>
+			<button className=' hover:text-purple-100'>Login</button>&nbsp;
+			<button className=' hover:text-purple-100'>SignUp</button>
 		</div>
 		</nav>
 		<div>
