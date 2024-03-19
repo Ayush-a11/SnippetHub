@@ -18,12 +18,8 @@ function Footer() {
 	<div className="w-1/2 flex flex-col bg-black rounded-lg text-purple-500  self-center m-4 items-center">
 	<h1 className=" text-4xl  border-accent p-1 ">Write To Us</h1>		
 		<form className='flex flex-col items-center'>
-			<Input label="Feedback"
-				   type="text"
-				   style='h-40'
-				   value={feedBack}
-				   onChange={setFeedBack}
-				   />	
+		
+			<div className="flex space-x-2">
 			<Input label="Name"
 				   type="text"
 				   value={name}
@@ -33,11 +29,23 @@ function Footer() {
 				   value={phoneNumber}
 				   onChange={setPhoneNumber}
 				   />
+			</div>
+			<div>
 			<Input label="Email"
 				   type="email"
 				   value={email}
 				   onChange={setEmail}
 			/>	
+			</div>
+
+			<Input label="Feedback"
+				   type="text"
+				   style='h-40'
+				   value={feedBack}
+				   onChange={setFeedBack}
+				   />	
+			
+			
 			<button className='max-w-fit my-5 dark:bg-black border-purple-500  hover:bg-purple-500 hover:text-black border-2
 		hover:border-2 hover:border-black p-1 px-2 rounded-lg' >Submit</button>
 			
@@ -64,7 +72,7 @@ function Footer() {
 	
 	</div>
 
-	<h1 className='text-purple-500'>SnippetHub CopyRight @2024 ~ Ayush Dimri</h1>
+	<h1 className='text-textColor'>SnippetHub CopyRight @2024 ~ Ayush Dimri</h1>
 
 
 

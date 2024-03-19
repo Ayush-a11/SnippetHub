@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Loader from '../CommonUtility/Loader';
 
 function TypingEffect({devMode=false}) {
   const text= "Hey there, I'm Ayush Dimri. Welcome to SnippetHub—your gateway to discovery and growth. Lets dive in, explore, and elevate ourselves together.";
@@ -17,12 +18,13 @@ function TypingEffect({devMode=false}) {
 		else{
 		clearTimeout(timer)
 		}
-	},100)
+	},80)
 	
   },[index])
 
   return (
-	<div className=" w-full bg-red-500">
+	<div className=" w-full">
+		<Loader/>
 		{devMode &&
 			<div className=" flex justify-end bg-accent text-textColor p-2  transition-transform duration-300">
 			<button className={`relative z-10 ${currentTab == 'Snip' ? 'border-b-2 border-purple-500' : null}`} onClick={() => setCurrentTab('Snip')}>Snippet {'</>'}</button>

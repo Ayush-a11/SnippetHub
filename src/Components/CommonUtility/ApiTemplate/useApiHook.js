@@ -4,11 +4,18 @@ import { useState } from 'react'
 import { Accept, AccessToken, BaseUri, ClientId } from './Config';
 
 
-function ApiHook(Method,RequestUrl,Body) {
+function useApiHook(Method,RequestUrl,Body,dep) {
+	
 	const [data,setData]=useState([]);
-	console.log('baseUrl',RequestUrl)
 	const myHeaders = new Headers();
-	// myHeaders.append("Client-ID", ClientId);
+	function handleRequest(){
+	
+	
+	}
+
+	useEffect(()=>{
+
+		// myHeaders.append("Client-ID", ClientId);
 	// myHeaders.append("Accept", Accept);
 	// myHeaders.append("Content-Type", "text/plain");
 	myHeaders.append("Authorization", AccessToken);
@@ -19,13 +26,15 @@ function ApiHook(Method,RequestUrl,Body) {
 	redirect: "follow"
 	};
 
-	useEffect(()=>{
 		fetch(RequestUrl, requestOptions)
 		.then((response) => response.json())
 		.then((result) => setData(result))
 		.catch((error) => console.error(error));
-	},[]);	
-  return data;
+
+	},[dep])
+
+	return data;
+
 }
 
-export default ApiHook
+export default useApiHook

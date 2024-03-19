@@ -14,7 +14,7 @@ function Header() {
 			setHeight(14);
 	}
   return (
-	<div className={`bg-accent transition-transform duration-300 h-${height} text-purple-500 p-4 font-mono font-bold`}> 
+	<div className={`fixed z-50 w-full  bg-accent transition-transform duration-300 h-${height} text-purple-500 p-4 font-mono font-bold border-b-4 border-black`}> 
 		<nav className="cursor-pointer flex justify-between">
 		<FontAwesomeIcon className='text-3xl' icon={faCentercode}/>
 			<ul className={`space-x-4 sm:flex ${height==14?'hidden':'flex-col '} `}>		

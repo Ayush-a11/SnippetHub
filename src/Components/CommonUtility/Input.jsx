@@ -20,15 +20,15 @@ function Input({ label = "", style = "", type = "text", placeholder = "", value 
 	},[value])
   return (
     <div className="flex flex-col relative transition-transform duration-300">
-   <div onClick={handleFocus} className={`relative self-start ${focused?'top-2 text-xs bg-black border-b-2  border-purple-500':'top-7 text-base'}  px-2 rounded-md transition-all duration-300 font-bold text-purple-500  ml-3`}>{label}</div>
+   <div onClick={handleFocus} className={`relative self-start ${focused?'top-2 text-xs bg-black  border-purple-500':'top-7 text-base'} rounded-lg px-2 transition-all duration-300 font-bold text-purple-500  ml-3`}>{label}</div>
       <input
         type={type}
-        className={`border w-72 rounded-lg pl-4 pr-8 py-2 focus:border-purple-500 ${style}`}
+        className={`outline-none bg-accent  w-72 rounded-lg pl-4 pr-8 py-2 focus:border-purple-500 ${style}`}
         value={value}
         // placeholder={placeholder}
         onFocus={handleFocus}
         onBlur={handleBlur}
-		onChange={(e)=>onChange(e.target.value)}
+		    onChange={(e)=>onChange(e.target.value)}
         {...props}
       />
     </div>

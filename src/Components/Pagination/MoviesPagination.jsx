@@ -14,16 +14,12 @@ function TrendingMovie({devMode=false}) {
 	const Body="";
 	const Method='Get'
 
-	// useEffect(()=>{
-	// 	if(gameData.Current!='TrendingGame'){
-		// const temp=()=>{
-		// dispatch(clearData());
-		const data=  ApiHook(Method,RequestUrl,Body);
-		const Current='TrendingMovie';
-		dispatch(setData(data,Current));
-		// }
-	// })
-  return (
+	
+	const data=  ApiHook(Method,RequestUrl,Body);
+	const Current='TrendingMovie';
+	dispatch(setData(data,Current));
+	
+	return (
 	<div className="relative w-11/12 m-auto rounded-xl ">
 			<h1 className="bg-black text-purple-500 text-4xl  border-accent p-1 ">Trending Movies</h1>
 			{devMode &&
