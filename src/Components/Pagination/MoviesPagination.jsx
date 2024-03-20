@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ApiHook from '../CommonUtility/ApiTemplate/ApiHook.js'
+import ApiHook from '../CommonUtility/ApiTemplate/useApiHook.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { BaseUri } from '../CommonUtility/ApiTemplate/Config.js';
 import {setData,clearData} from '../Store/GameSlice.js'
