@@ -19,23 +19,22 @@ function App() {
   const [devMode,setDevMode] =useState(false)
 
   return (
-    <div className="flex flex-col w-full h-full bg-black">
+    <div className="flex flex-col w-full h-full bg-background">
       
       <Header/>
       <button className="text-textColor"onClick={()=>setDevMode((prev)=>!prev)} ><FontAwesomeIcon className='text-purple-500 text-lg scale-125' icon={devMode?faToggleOn:faToggleOff}/>   Dev Mode</button>
      
       <TypingEffect devMode={devMode}/>
-     <div className="relative w-full h-screen my-10  flex bg-accent">
+     <div className="relative w-full  my-10  flex ">
      
       <div className="w-auto h-full text-purple-500">
           <LeftMenuBar/>
       </div>
-      <div className="flex-1  h-full bg-black overflow-auto">
-      {/* <ResponsiveSlideShow devMode={devMode}/>
+      <div className="flex-1  h-full  overflow-auto">
+      <ResponsiveSlideShow devMode={devMode}/>
       <Tabs devMode={devMode}/>
       <Accordion devMode={devMode}/>
-      <MoviesPagination devMode={devMode}/> */}
-
+      {/* <MoviesPagination devMode={devMode}/> */}
       <InfiniteScroll devMode={devMode}/>
       </div>
     </div>

@@ -22,7 +22,7 @@ function Tabs({devMode=false}) {
 
   return (
 	<div className="w-11/12 h-auto  m-auto  rounded-xl ">
-	<h1 className="bg-black text-purple-500 text-4xl  border-accent p-1 ">Dynamic Tab</h1>
+	<h1 className="bg-background text-textColor text-4xl  border-accent p-1 ">Dynamic Tab</h1>
 	<div className="bg-accent text-textColor   transition-transform duration-300">
 	<div className="bg-accent flex justify-between text-gray-300 space-x-4 ml-2 ">
 		<div>

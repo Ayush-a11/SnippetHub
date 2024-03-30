@@ -5,18 +5,15 @@ import React, { useState } from 'react'
 import Input from '../CommonUtility/Input.jsx'
 
 function Footer() {
-
-	const [name,setName] =useState();
-	const [feedBack, setFeedBack] = useState();
-	const [phoneNumber, setPhoneNumber] = useState();
-	const [email, setEmail] = useState();
-
-
-  return (
-	<div className="flex flex-col bg-accent w-full mt-10">
-
-	<div className="w-1/2 flex flex-col bg-black rounded-lg text-purple-500  self-center m-4 items-center">
-	<h1 className=" text-4xl  border-accent p-1 ">Write To Us</h1>		
+	const [name, setName] = useState('');
+	const [feedBack, setFeedBack] = useState('');
+	const [phoneNumber, setPhoneNumber] = useState('');
+	const [email, setEmail] = useState('');
+  
+	return (
+	  <div className="flex flex-col bg-background border-t border-white w-full mt-10 p-4">
+	<div className="w-1/2 flex flex-col bg-secondary rounded-lg text-textColor  self-center m-4 items-center">
+	<h1 className=" text-4xl   border-accent p-1 ">Write To Us</h1>		
 		<form className='flex flex-col items-center'>
 		
 			<div className="flex space-x-2">
@@ -51,33 +48,37 @@ function Footer() {
 			
 		</form>
 	</div>
-	<div className='flex justify-between'>
-	<div>
-		<button className=' dark:bg-black dark:text-primary text-primary border-primary font-sans font-bold hover:bg-primary hover:text-black border-2
-		hover:border-2 hover:border-black p-2 px-4 rounded-2xl' ><FontAwesomeIcon className='' icon={faInstagram} /></button>
-		<button className=' dark:bg-black dark:text-primary text-primary border-primary font-sans font-bold hover:bg-primary hover:text-black border-2
-		hover:border-2 hover:border-black p-2 px-4 rounded-2xl' ><FontAwesomeIcon className='' icon={faLinkedin} /></button>
-		<button className=' dark:bg-black dark:text-primary text-primary border-primary font-sans font-bold hover:bg-primary hover:text-black border-2
-		hover:border-2 hover:border-black p-2 px-4 rounded-2xl' ><FontAwesomeIcon className='' icon={faGithub} /></button>
-		<button className=' dark:bg-black dark:text-primary text-primary border-primary font-sans font-bold hover:bg-primary hover:text-black border-2	
-		hover:border-2 hover:border-black p-2 px-4 rounded-2xl' ><FontAwesomeIcon className='' icon={faTerminal}/></button>
-	</div>
-	<div className='cursor-pointer text-lg sm:text-2xl md:text-xl dark:text-gray-500 	 dark:bg-black bg-light text-gray-500 p-2 md:p-10 rounded-lg shadow-2xl' style={{align:"end"}}>
-			<h1 className='cursor-pointer   ml-2 font-bold'>Contact Details</h1>
-			<ul className='cursor-pointer flex  flex-col mt-2 items-start'>
-				<li><FontAwesomeIcon icon={faMailBulk}/><b>Email :<span className='text-purple-500'>	aayush.dimri1@gmail.com</span></b></li>
-				<li><FontAwesomeIcon icon={faPhone}/><b>Phone : <span className='text-purple-500'>+917417446111</span></b></li>
-			</ul>
-	</div>
-	
-	</div>
-
-	<h1 className='text-textColor'>SnippetHub CopyRight @2024 ~ Ayush Dimri</h1>
-
-
-
-	</div>
-  )
-}
-
-export default Footer
+  
+		<div className='flex flex-wrap justify-evenly items-start text-lg mt-4 text-textColor cursor-pointer'>
+		  <div className="flex flex-col items-start gap-2">
+			<h2 className="font-bold">Features</h2>
+			<p>Accordion</p>
+			<p>Dynamic Tab</p>
+			<p>Infinite Scroll</p>
+			<p>Auto Typing Text</p>
+			<p>Responsive Slideshow</p>
+		  </div>
+		  <div className="flex flex-col items-start gap-2">
+			<h2 className="font-bold">Quick Links</h2>
+			<p>Home</p>
+			<p>Menu</p>
+		  </div>
+		  <div className="flex flex-col items-start gap-2">
+			<h2 className="font-bold">Contact Details</h2>
+			<p><FontAwesomeIcon icon={faMailBulk} /> Email: <a href="mailto:aayush.dimri1@gmail.com" className="text-purple-500">aayush.dimri1@gmail.com</a></p>
+			<p><FontAwesomeIcon icon={faPhone} /> Phone: <a href="tel:+917417446111" className="text-purple-500">+917417446111</a></p>
+		  </div>
+		  <div className='flex gap-2'>
+			{[faInstagram, faLinkedin, faGithub, faTerminal].map((icon, index) => (
+			  <button key={index} className='bg-black text-purple-500 hover:bg-purple-500 hover:text-black rounded-xl px-4 p-2'>
+				<FontAwesomeIcon icon={icon} />
+			  </button>
+			))}
+		  </div>
+		</div>
+		<p className='text-center mt-4 text-textColor' >SnippetHub ©2024 ~ Ayush Dimri</p>
+	  </div>
+	);
+  }
+  
+  export default Footer;

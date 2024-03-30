@@ -8,11 +8,14 @@ export default {
     extend: {
       colors: {
         primary: '#ef233c',    // Custom primary color
-        secondary: '#6574cd',  // Custom secondary color
-        accent: 'rgb(15,15,15)',     // Custom accent color
+        secondary: '#071F25',  // Custom secondary color
+        accent: '#0A1C15',     // Custom accent color
         boxcol:  'rgb(30,30,30)',
         light:'#e5e5e5',
-        textColor:'rgb(158,203,255)'
+        textColor:'#E6FBF3',
+        buttonCol:'#0A2B3A',
+        buttonCol2:'#8EECC6',
+        background:'#03110C'
       },
       keyframes: {
         pulse: {

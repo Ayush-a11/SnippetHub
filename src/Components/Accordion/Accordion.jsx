@@ -26,14 +26,14 @@ function Accordion({devMode}) {
 
   return (
     <div className="relative  w-11/12 m-auto rounded-xl ">
-    <h1 className="bg-black text-purple-500 text-4xl  border-accent p-1 ">Accordion</h1>
+    <h1 className="bg-background text-textColor text-4xl  border-accent p-1 ">Accordion</h1>
     {devMode &&
     <div className="flex justify-end bg-accent text-textColor p-2  transition-transform duration-300">
       <button className={`relative z-10 ${currentTab == 'Snip' ? 'border-b-2 border-purple-500' : null}`} onClick={() => setCurrentTab('Snip')}>Snippet {'</>'}</button>
     </div>
     }	
 
-    <hr className=" relative -top-1 border-2 border-black" />
+    <hr className=" relative -top-1 border-2 border-accent" />
     <div>
         <div className="relative z-10"> 
           <button className=" bg-accent w-full text-white hover:text-gray-200" onClick={heightHandler}>

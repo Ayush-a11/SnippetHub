@@ -14,7 +14,7 @@ function Header() {
 			setHeight(14);
 	}
   return (
-	<div className={`fixed z-50 w-full  bg-accent transition-transform duration-300 h-${height} text-purple-500 p-4 font-mono font-bold border-b-4 border-black`}> 
+	<div className={`fixed z-50 w-full  bg-background transition-transform duration-300 h-${height} text-textColor p-4 font-mono font-bold border-b border-textColor`}> 
 		<nav className="cursor-pointer flex justify-between">
 		<FontAwesomeIcon className='text-3xl' icon={faCentercode}/>
 			<ul className={`space-x-4 sm:flex ${height==14?'hidden':'flex-col '} `}>		
@@ -25,8 +25,8 @@ function Header() {
 		<div>
 			
 			<button className="sm:hidden" onClick={toggleHeight} ><FontAwesomeIcon icon={faBars}/></button> &nbsp;
-			<button className=' hover:text-purple-100'>Login</button>&nbsp;
-			<button className=' hover:text-purple-100'>SignUp</button>
+			<button className=' text-white rounded-sm bg-buttonCol p-1 px-4 ' >Login</button>&nbsp;
+			<button className=' text-black rounded-sm bg-buttonCol2 p-1 px-4'>SignUp</button>
 		</div>
 		</nav>
 		<div>
