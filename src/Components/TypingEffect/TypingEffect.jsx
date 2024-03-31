@@ -30,7 +30,7 @@ function TypingEffect({devMode=false}) {
 			<button className={`relative z-10 ${currentTab == 'Snip' ? 'border-b-2 border-purple-500' : null}`} onClick={() => setCurrentTab('Snip')}>Snippet {'</>'}</button>
 		</div>
 		}
-	<div className=" py-40 w-8/12 m-auto bg-background text-textColor text-2xl  border-accent p-1">{displayText}</div>
+	<div className=" py-40 w-8/12 m-auto bg-light text-black dark:bg-background dark:text-textColor text-2xl  border-accent p-1">{displayText}</div>
 	</div>
   )
 }

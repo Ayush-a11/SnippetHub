@@ -11,7 +11,7 @@ function Footer() {
 	const [email, setEmail] = useState('');
   
 	return (
-	  <div className="flex flex-col bg-background border-t border-white w-full mt-10 p-4">
+	  <div className="flex flex-col bg-light text-black  dark:bg-background border-t border-background dark:border-white dark:text-textColor  w-full mt-10 p-4">
 	<div className="w-1/2 flex flex-col bg-secondary rounded-lg text-textColor  self-center m-4 items-center">
 	<h1 className=" text-4xl   border-accent p-1 ">Write To Us</h1>		
 		<form className='flex flex-col items-center'>
@@ -43,13 +43,13 @@ function Footer() {
 				   />	
 			
 			
-			<button className='max-w-fit my-5 dark:bg-black border-purple-500  hover:bg-purple-500 hover:text-black border-2
+			<button className='max-w-fit my-5 dark:bg-black border-purple-500  text-textColor hover:bg-purple-500 hover:text-black border-2
 		hover:border-2 hover:border-black p-1 px-2 rounded-lg' >Submit</button>
 			
 		</form>
 	</div>
   
-		<div className='flex flex-wrap justify-evenly items-start text-lg mt-4 text-textColor cursor-pointer'>
+		<div className='flex flex-wrap justify-evenly items-start text-lg mt-4  cursor-pointer'>
 		  <div className="flex flex-col items-start gap-2">
 			<h2 className="font-bold">Features</h2>
 			<p>Accordion</p>
@@ -70,7 +70,7 @@ function Footer() {
 		  </div>
 		  <div className='flex gap-2'>
 			{[faInstagram, faLinkedin, faGithub, faTerminal].map((icon, index) => (
-			  <button key={index} className='bg-black text-purple-500 hover:bg-purple-500 hover:text-black rounded-xl px-4 p-2'>
+			  <button key={index} className='dark:bg-black bg-secondary text-purple-500 hover:bg-purple-500 hover:text-black rounded-xl px-4 p-2'>
 				<FontAwesomeIcon icon={icon} />
 			  </button>
 			))}

@@ -19,10 +19,11 @@ function App() {
   const [devMode,setDevMode] =useState(false)
 
   return (
-    <div className="flex flex-col w-full h-full bg-background">
+    <div className="flex flex-col w-full h-full bg-light  dark:bg-background">
       
       <Header/>
-      <button className="text-textColor"onClick={()=>setDevMode((prev)=>!prev)} ><FontAwesomeIcon className='text-purple-500 text-lg scale-125' icon={devMode?faToggleOn:faToggleOff}/>   Dev Mode</button>
+      <button className="text-textColor"onClick={()=>setDevMode((prev)=>!prev)} >
+        <FontAwesomeIcon className='text-purple-500 text-lg scale-125' icon={devMode?faToggleOn:faToggleOff}/>   Dev Mode</button>
      
       <TypingEffect devMode={devMode}/>
      <div className="relative w-full  my-10  flex ">

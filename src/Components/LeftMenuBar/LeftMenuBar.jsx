@@ -15,12 +15,12 @@ function LeftMenuBar() {
 	]
 	const [active, setActive] = useState(false);
 	return (
-		<div className={`${active?'w-10 bg-background':'bg-accent'} transition-transform duration-300 text-textColor`}>
+		<div className={`${active?'w-10 bg-secondary':'bg-secondary'} transition-transform duration-300 text-textColor`}>
 			<div className={`${active?'transform translate-x-[-90%] duration-300 w-32':'transform translate-x-[0] duration-300 w-64'} flex justify-between h-screen`}>
 				<div className="flex flex-col items-start  p-6">
 					{
 						Components.map((item) => (
-							<div key={item.id} className=" cursor-pointer">
+							<div key={item.id} className=" cursor-pointer hover:text-hovCol">
 								{item.name}
 							</div>
 						))
