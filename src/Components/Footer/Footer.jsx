@@ -3,18 +3,37 @@ import { faMailBulk, faPhone, faTerminal } from '@fortawesome/free-solid-svg-ico
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import Input from '../CommonUtility/Input.jsx'
+import Loader from '../CommonUtility/Loader.jsx'
 
 function Footer() {
+	const [loading,setLoading] = useState(false);
 	const [name, setName] = useState('');
 	const [feedBack, setFeedBack] = useState('');
 	const [phoneNumber, setPhoneNumber] = useState('');
 	const [email, setEmail] = useState('');
-  
+	
+
+	const handleForm=(e)=>{
+		e.preventDefault();
+		setLoading(true);
+
+		setTimeout(()=>{
+			setLoading(false);
+			setName('');
+			setEmail('');
+			setFeedBack('');
+			setPhoneNumber('');
+		},1000)
+
+		
+
+	}
+
 	return (
 	  <div className="flex flex-col bg-light text-black  dark:bg-background border-t border-background dark:border-white dark:text-textColor  w-full mt-10 p-4">
 	<div className="w-1/2 flex flex-col bg-secondary rounded-lg text-textColor  self-center m-4 items-center">
 	<h1 className=" text-4xl   border-accent p-1 ">Write To Us</h1>		
-		<form className='flex flex-col items-center'>
+		<form className='relative flex flex-col items-center'>
 		
 			<div className="flex space-x-2">
 			<Input label="Name"
@@ -34,7 +53,10 @@ function Footer() {
 				   onChange={setEmail}
 			/>	
 			</div>
-
+			<div className="absolute z-50 top-28 p-2">
+			{loading&&<Loader/>}
+			{/* <h1>Thanks for your feedback!</h1> */}
+			</div>
 			<Input label="Feedback"
 				   type="text"
 				   style='h-40'
@@ -44,7 +66,7 @@ function Footer() {
 			
 			
 			<button className='max-w-fit my-5 dark:bg-black border-purple-500  text-textColor hover:bg-purple-500 hover:text-black border-2
-		hover:border-2 hover:border-black p-1 px-2 rounded-lg' >Submit</button>
+		hover:border-2 hover:border-black p-1 px-2 rounded-lg'onClick={handleForm} >Submit</button>
 			
 		</form>
 	</div>
