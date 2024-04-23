@@ -4,6 +4,7 @@ import LoginGif from '../../assets/Login.gif'
 import '../../../src/index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { Link,useNavigate  } from 'react-router-dom'
 function SingUp() {
@@ -15,6 +16,8 @@ function SingUp() {
 	const [email,setEmail] = useState();
 	const [page,setPage] = useState(1);
 	const [otp,setOtp] = useState()
+	const [togglePass, setTogglePass] =useState();
+
 
 	const handleForm=(e)=>{
 		e.preventDefault();	
@@ -50,7 +53,7 @@ function SingUp() {
   return (
 	<>
 	<div className="modal"></div>
-	<div className="modal-container flex dark:text-textColor dark:bg-background bg-light text-black justify-center my-10 ">
+	<div className="modal-container flex dark:text-textColor dark:bg-background bg-light text-black justify-center my-10 border-2 border-purple-500 shadow-2xl rounded-2xl ">
 		<div className="bg-accent  w-full mx-10 my-10 py-4 ">
 			<h1 className="text-3xl my-2 text-purple-500 font-bold">SignUp</h1>
 		<div className="w-full flex justify-around">
@@ -92,17 +95,19 @@ function SingUp() {
 			<>
 
 			<Input label='OTP'
-				   type="number"
+				   type="text"
 				   value={otp}
 				   onChange={setOtp}
 				   />
+			
 			<Input label='Password'
-				   type="password"
+				   type={togglePass?"text":"password"}
 				   value={password}
 				   onChange={setPassword}
 				   />
-			<h2 className="text-purple-500 my-2">Already an account? Login</h2>		   
-		
+			<Link to='/Login'><h2 className="text-purple-500 my-2">Already an account? Login</h2>		   </Link>
+			<button type='button'><FontAwesomeIcon onClick={()=>setTogglePass((prev)=>!prev)} className='cursor-pointer text-lg relative bottom-16 left-32  ' icon={togglePass?faEye:faEyeSlash}/>
+		</button>
 		<div className="flex  justify-evenly">
 		<button className='max-w-fit my-5 dark:bg-black border-purple-500  text-textColor hover:bg-purple-500 hover:text-purple-500 border-2
 		hover:border-2 hover:border-black p-1 px-2 rounded-lg'onClick={(e)=>setPage((prev)=>prev-1)} >Prev</button>

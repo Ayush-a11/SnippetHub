@@ -4,14 +4,15 @@ import LoginGif from '../../assets/Login.gif'
 import '../../../src/index.css'
 import { Link,useNavigate  } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function Login() {
-
+    
+	const [togglePass, setTogglePass] =useState();
 	const [userName,setUserName] =useState();
 	const [password,setPassword] = useState();
 
-	const navigate =useNavigate();
+	const navigate =useNavigate(false);
 	const handleForm=(e)=>{
 		e.preventDefault();	
 	}
@@ -32,7 +33,7 @@ function Login() {
   return (
 	<>
 	<div className="modal"></div>
-	<div className="modal-container flex dark:text-textColor dark:bg-background bg-light text-black justify-center my-10 ">
+	<div className="modal-container flex dark:text-textColor dark:bg-background bg-light text-black justify-center my-10 border-2 border-purple-500 shadow-2xl rounded-2xl">
 		<div className="bg-accent w-full mx-10 my-10 py-4 ">
 			<h1 className="text-3xl my-2 text-purple-500 font-bold">Login</h1>
 		<div className="w-full flex justify-around">
@@ -47,12 +48,15 @@ function Login() {
 				   onChange={setUserName}
 				   />
 			<Input label='Password'
-				   type="password"
+				   type={togglePass?"text":"password"}
 				   value={password}
 				   onChange={setPassword}
 				   />
+			
+		<button type='button'><FontAwesomeIcon onClick={()=>setTogglePass((prev)=>!prev)} className='cursor-pointer text-lg relative bottom-6 left-32  ' icon={togglePass?faEye:faEyeSlash}/>
+		</button>
 		<Link to='/SignUp'> 	<h2 className="text-purple-500 my-2">don't have an account? SignUp</h2> </Link>   
-		<button className='max-w-fit my-5 dark:bg-black border-purple-500  text-textColor hover:bg-purple-500 hover:text-black border-2
+		<button className='max-w-fit my-5 dark:bg-black border-purple-500  text-textColor hover:bg-purple-500 hover:text-purple-500 border-2
 		hover:border-2 hover:border-black p-1 px-2 rounded-lg'onClick={(e)=>handleForm(e)} >Submit</button>
 		</form>
 		</div>
