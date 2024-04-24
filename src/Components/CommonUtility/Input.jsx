@@ -25,10 +25,9 @@ function Input({ label = "", style = "", type = "text", placeholder = "", value 
         type={type}
         className={`outline-none bg-boxcol bg-opacity-80  w-72 rounded-lg pl-4 pr-8 py-2 focus:textColor ${style}`}
         value={value}
-        // placeholder={placeholder}
         onFocus={handleFocus}
         onBlur={handleBlur}
-		    onChange={(e)=>onChange(e.target.value)}
+		    onChange={onChange}
         {...props}
       />
     </div>

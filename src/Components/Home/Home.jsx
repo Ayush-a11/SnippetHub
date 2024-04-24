@@ -8,6 +8,9 @@ import Accordion from '../../Components/Accordion/Accordion'
 
 import InfiniteScroll from '../../Components/InfiniteScroll/InfiniteScroll'
 function Home() {
+  const [count, setCount] = useState(0)
+  const [devMode,setDevMode] =useState(false)
+  const state=false;
   return (
 	<>
 	 <TypingEffect devMode={devMode}/>
