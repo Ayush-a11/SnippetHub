@@ -9,29 +9,99 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Link,useNavigate  } from 'react-router-dom'
 function SingUp() {
 
-	const [userName,setUserName] =useState();
-	const [password,setPassword] = useState();
-	const [firstName,setFirstName] = useState();
-	const [lastName,setLastName] = useState();
-	const [email,setEmail] = useState();
+	// const [userName,setUserName] =useState();
+	// const [password,setPassword] = useState();
+	// const [firstName,setFirstName] = useState();
+	// const [lastName,setLastName] = useState();
+	// const [email,setEmail] = useState();
 	const [page,setPage] = useState(1);
-	const [otp,setOtp] = useState()
+	// const [otp,setOtp] = useState()
 	const [togglePass, setTogglePass] =useState();
 
+	const [inputField,setInputField] = useState({
+		username:{
+				value:'',
+				error:''
+			},
+		password:{
+				value:'',
+				error:''
+			},
+		firstName:{
+			value:'',
+			error:''
+		},
+		lastName:{
+			value:'',
+			error:''
+		},
+		email:{
+			value:'',
+			error:''
+		},
+		otp:{
+			value:'',
+			error:''
+		}
+});
 
-	const handleForm=(e)=>{
-		e.preventDefault();	
-	} 
+const handleForm=(e)=>{
+	e.preventDefault();	
+
+	console.log(inputField)
+	
+	if(inputField.username.value=='' || inputField.username.value== undefined || inputField.username.value==null){
+	  inputField.username.error='UserName canno\'t be empty!';
+
+	  setInputField((prev)=>({...prev,username:{...prev["username"],error:'UserName canno\'t be empty!'}}))
+	}
+	else{
+		setInputField((prev)=>({...prev,"username":{...prev["username"],error:''}}))
+
+	}
+	if(inputField.password.value=='' || inputField.password.value== undefined || inputField.password.value==null){
+		setInputField((prev)=>({...prev,"password":{...prev["password"],error:'Password canno\'t be empty!'}}))
+
+	}	
+	else{
+		setInputField((prev)=>({...prev,"password":{...prev["password"],error:''}}))
+
+	}
+
+
+	if(inputField.username.error!='' && inputField.password.error!=''){
+		console.log('success');
+	}
+
+}
+
+const handleOnChange = (fieldName, value)=>{
+	setInputField((prev)=>({...prev,
+							[fieldName]:
+								{...prev[fieldName],
+									"value": value}}));
+}
+
 
 	const NextPage = (e)=>{
 		e.preventDefault();
 
-		if(userName && firstName && lastName && email){
-			setPage(prev=>prev+1)
-		}
+		if(inputField.firstName.value=='' || inputField.firstName.value== undefined || inputField.firstName.value==null){
+	  
+			setInputField((prev)=>({...prev,firstName:{...prev["firstName"],error:'firstName canno\'t be empty!'}}))
+		  }
 		else{
-			console.log('error')
-		}
+			  setInputField((prev)=>({...prev,"firstName":{...prev["firstName"],error:''}}))
+	  
+		  }
+		if(inputField.firstName.value=='' || inputField.firstName.value== undefined || inputField.firstName.value==null){
+	  
+			setInputField((prev)=>({...prev,firstName:{...prev["firstName"],error:'firstName canno\'t be empty!'}}))
+		  }
+		else{
+			  setInputField((prev)=>({...prev,"firstName":{...prev["firstName"],error:''}}))
+	  
+		  }
 
 	}
 	const navigate =useNavigate();	
@@ -65,26 +135,34 @@ function SingUp() {
 
 		{page==1?
 			<>
-			<Input label='firstName'
+			<Input label='FirstName'
 				   type="text"
-				   value={firstName}
-				   onChange={setFirstName}
+				   value={inputField?.firstName?.value}
+				   onChange={(e) =>handleOnChange('firstName',e.target.value)}
+				   style={inputField.firstName.error!=''?" border-b-4 border-red-500":""}
 				   />
+			{inputField.firstName.error!=''&&<span className="text-red-500 ">{inputField.firstName.error}</span>}
 			<Input label='LastName'
 			type="text"
-			value={lastName}
-			onChange={setLastName}
+			value={inputField?.lastName?.value}
+				   onChange={(e) =>handleOnChange('lastName',e.target.value)}
+				   style={inputField.lastName.error!=''?" border-b-4 border-red-500":""}
 			/>
+			{inputField.lastName.error!=''&&<span className="text-red-500 ">{inputField.lastName.error}</span>}
 			<Input label='UserName'
 				   type="text"
-				   value={userName}
-				   onChange={setUserName}
+				   value={inputField?.username?.value}
+				   onChange={(e) =>handleOnChange('username',e.target.value)}
+				   style={inputField.username.error!=''?" border-b-4 border-red-500":""}
 				   />
+			{inputField.username.error!=''&&<span className="text-red-500 ">{inputField.username.error}</span>}
 			<Input label='Email'
 				   type="email"
-				   value={email}
-				   onChange={setEmail}
+				   value={inputField?.email?.value}
+				   onChange={(e) =>handleOnChange('email',e.target.value)}
+				   style={inputField.email.error!=''?" border-b-4 border-red-500":""}
 				   />
+			{inputField.email.error!=''&&<span className="text-red-500 ">{inputField.email.error}</span>}
 		<Link to='/Login'>	<h2 className="text-purple-500 my-2">Already an account? Login</h2>		   
 		</Link>
 		<button type='button' className='max-w-fit my-5 dark:bg-black border-purple-500  text-textColor hover:bg-purple-500 hover:text-purple-500 border-2
@@ -96,15 +174,18 @@ function SingUp() {
 
 			<Input label='OTP'
 				   type="text"
-				   value={otp}
-				   onChange={setOtp}
+				   value={inputField?.otp?.value}
+				   onChange={(e) =>handleOnChange('otp',e.target.value)}
+				   style={inputField.otp.error!=''?" border-b-4 border-red-500":""}
 				   />
-			
+			{inputField.otp.error!=''&&<span className="text-red-500 ">{inputField.otp.error}</span>}
 			<Input label='Password'
 				   type={togglePass?"text":"password"}
-				   value={password}
-				   onChange={setPassword}
+				   value={inputField?.password?.value}
+				   onChange={(e) =>handleOnChange('password',e.target.value)}
+				   style={inputField.password.error!=''?" border-b-4 border-red-500":""}
 				   />
+			{inputField.password.error!=''&&<span className="text-red-500 ">{inputField.password.error}</span>}
 			<Link to='/Login'><h2 className="text-purple-500 my-2">Already an account? Login</h2>		   </Link>
 			<button type='button'><FontAwesomeIcon onClick={()=>setTogglePass((prev)=>!prev)} className='cursor-pointer text-lg relative bottom-16 left-32  ' icon={togglePass?faEye:faEyeSlash}/>
 		</button>

@@ -5,12 +5,13 @@ import '../../../src/index.css'
 import { Link,useNavigate  } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import authObj from '../../appWrite/AuthUtils';
 
 function Login() {
     
 	const [togglePass, setTogglePass] =useState();
 	const [inputField,setInputField] = useState({
-								username:{
+								email:{
 										value:'',
 										error:''
 									},
@@ -21,18 +22,21 @@ function Login() {
 		});
 
 	const navigate =useNavigate(false);
-	const handleForm=(e)=>{
+
+	
+
+	const handleForm= async(e)=>{
 		e.preventDefault();	
 
 		console.log(inputField)
 		
-		if(inputField.username.value=='' || inputField.username.value== undefined || inputField.username.value==null){
-		  inputField.username.error='UserName canno\'t be empty!';
+		if(inputField.email.value=='' || inputField.email.value== undefined || inputField.email.value==null){
+		  inputField.email.error='UserName canno\'t be empty!';
 
-		  setInputField((prev)=>({...prev,username:{...prev["username"],error:'UserName canno\'t be empty!'}}))
+		  setInputField((prev)=>({...prev,email:{...prev["email"],error:'email canno\'t be empty!'}}))
 		}
 		else{
-			setInputField((prev)=>({...prev,"username":{...prev["username"],error:''}}))
+			setInputField((prev)=>({...prev,"email":{...prev["email"],error:''}}))
 
 		}
 		if(inputField.password.value=='' || inputField.password.value== undefined || inputField.password.value==null){
@@ -45,9 +49,16 @@ function Login() {
 		}
 
 
-		if(inputField.username.error!='' && inputField.password.error!=''){
-			console.log('success');
-		}
+		// if(inputField.email.error!='' && inputField.password.error!=''){
+		// 	console.log('success');
+
+			const msg= await authObj.loginWithEmail(inputField.email.value,inputField.password.value)
+			
+			console.log('login',msg);
+
+			
+
+		// }
 
 	}
 
@@ -83,13 +94,13 @@ function Login() {
 		</div>
 		<div className=" flex flex-col items-center justify-evenly mx-2 ">
 		<form className='relative '>
-			<Input label='UserName'
+			<Input label='Email'
 				   type="text"
-				   value={inputField?.username?.value}
-				   onChange={(e) =>handleOnChange('username',e.target.value)}
-				   style={inputField.username.error!=''?" border-b-4 border-red-500":""}	   
+				   value={inputField?.email?.value}
+				   onChange={(e) =>handleOnChange('email',e.target.value)}
+				   style={inputField.email.error!=''?" border-b-4 border-red-500":""}	   
 				   />
-			{inputField.username.error!=''&&<span className="text-red-500 ">{inputField.username.error}</span>}
+			{inputField.email.error!=''&&<span className="text-red-500 ">{inputField.email.error}</span>}
 			<Input label='Password'
 				   type={togglePass?"text":"password"}
 				   value={inputField?.password?.value}
