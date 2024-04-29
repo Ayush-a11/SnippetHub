@@ -5,10 +5,13 @@ import '../../../src/index.css'
 import { Link,useNavigate  } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
 import authObj from '../../appWrite/AuthUtils';
+import { setLogin } from '../Store/GameSlice';
+
 
 function Login() {
-    
+    const dispatch=useDispatch();
 	const [togglePass, setTogglePass] =useState();
 	const [inputField,setInputField] = useState({
 								email:{
@@ -21,7 +24,7 @@ function Login() {
 									}
 		});
 
-	const navigate =useNavigate(false);
+	const navigate =useNavigate();
 
 	
 
@@ -52,11 +55,21 @@ function Login() {
 		// if(inputField.email.error!='' && inputField.password.error!=''){
 		// 	console.log('success');
 
-			const msg= await authObj.loginWithEmail(inputField.email.value,inputField.password.value)
+			const user= await authObj.loginWithEmail(inputField.email.value,inputField.password.value)
 			
-			console.log('login',msg);
+			console.log('login',user);
 
-			
+			if(user){
+				dispatch(setLogin(user))
+				navigate('/')
+			}
+			else{
+
+			}
+
+			// const newmsg= await authObj.deleteSession(msg.$id);
+
+			// console.log('delete',newmsg);
 
 		// }
 

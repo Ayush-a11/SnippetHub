@@ -2,7 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState= {
 	Current:'',
-	data: null
+	data: null,
+	isLoggedIn: false,
+	user: null
+
 }
 
 const GameSlice = createSlice({
@@ -16,11 +19,19 @@ const GameSlice = createSlice({
 		clearData(state){
 			state.data=null;
 			state.Current=null;
+		},
+		setLogin(state,action){
+			state.user=action.payload;
+			state.isLoggedIn=true;
+		},
+		setLogout(state){
+			state.data=null;
+			state.isLoggedIn=false;
 		}
 	}
 })
 
-export const {setData,clearData} =GameSlice.actions;
+export const {setData,clearData,setLogin,setLogout} =GameSlice.actions;
 
 const reducers= GameSlice.reducer;
 export default reducers

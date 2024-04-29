@@ -16,17 +16,17 @@ class AuthUtil{
 		console.log(this.account)
 	}	
 
-	async singUp(userId,firstName,lastName,username,email,password){
+	async singUp(userId,email,password){
 		try{
-			await this.account.create(userId,firstName,lastName,username,email,password).
-			then((msg)=> msg).
-			catch(err=>err);
+
+			return await this.account.create(userId,email,password);
+			
 		}
 		catch(error){
+
 			console.log(`error occured at singUp method in AuthUtil ${error}`);
 			return false;
 		}
-		return true;
 	}
 	async loginWithEmail(email,password){
 		try{
@@ -34,10 +34,31 @@ class AuthUtil{
 		}
 		catch(error){
 			console.log(`error occured at LoginWithEmail method in AuthUtil ${error}`);
-			return false;
+			return false; 	
 		}
 	}
 
+	async deleteSession(sessionId){
+		
+		try{
+		return await this.account.deleteSession(sessionId);
+		}
+		catch(error){
+			console.log(`error occured at DeleteSession method in AuthUtil`);
+			return error;
+		}
+	}
+
+	// async getSession(sessionId){
+	// 	try{
+	// 		return await this.account.getSession(sessionId);
+
+
+	// 	}catch(error){
+	// 		console.log(`error occured at GetSession method in AuthUtil`);
+	// 		return error;
+	// 	}
+	// }
 
 
 }
