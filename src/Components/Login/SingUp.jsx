@@ -7,6 +7,7 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { Link,useNavigate  } from 'react-router-dom'
+import authObj from '../../appWrite/AuthUtils';
 function SingUp() {
 
 	// const [userName,setUserName] =useState();
@@ -45,33 +46,36 @@ function SingUp() {
 		}
 });
 
-const handleForm=(e)=>{
+const handleForm=async(e)=>{
 	e.preventDefault();	
 
 	console.log(inputField)
 	
-	if(inputField.username.value=='' || inputField.username.value== undefined || inputField.username.value==null){
-	  inputField.username.error='UserName canno\'t be empty!';
+	// if(inputField.username.value=='' || inputField.username.value== undefined || inputField.username.value==null){
+	//   inputField.username.error='UserName canno\'t be empty!';
 
-	  setInputField((prev)=>({...prev,username:{...prev["username"],error:'UserName canno\'t be empty!'}}))
-	}
-	else{
-		setInputField((prev)=>({...prev,"username":{...prev["username"],error:''}}))
+	//   setInputField((prev)=>({...prev,username:{...prev["username"],error:'UserName canno\'t be empty!'}}))
+	// }
+	// else{
+	// 	setInputField((prev)=>({...prev,"username":{...prev["username"],error:''}}))
 
-	}
-	if(inputField.password.value=='' || inputField.password.value== undefined || inputField.password.value==null){
-		setInputField((prev)=>({...prev,"password":{...prev["password"],error:'Password canno\'t be empty!'}}))
+	// }
+	// if(inputField.password.value=='' || inputField.password.value== undefined || inputField.password.value==null){
+	// 	setInputField((prev)=>({...prev,"password":{...prev["password"],error:'Password canno\'t be empty!'}}))
 
-	}	
-	else{
-		setInputField((prev)=>({...prev,"password":{...prev["password"],error:''}}))
+	// }	
+	// else{
+	// 	setInputField((prev)=>({...prev,"password":{...prev["password"],error:''}}))
 
-	}
+	// }
 
 
-	if(inputField.username.error!='' && inputField.password.error!=''){
+	// if(inputField.username.error!='' && inputField.password.error!=''){
 		console.log('success');
-	}
+		const msg=await authObj.singUp(inputField.email.value,inputField.password.value);
+
+		console.log(msg);
+	// }
 
 }
 
@@ -83,25 +87,32 @@ const handleOnChange = (fieldName, value)=>{
 }
 
 
-	const NextPage = (e)=>{
+	const NextPage = async(e)=>{
 		e.preventDefault();
 
-		if(inputField.firstName.value=='' || inputField.firstName.value== undefined || inputField.firstName.value==null){
+		// if(inputField.firstName.value=='' || inputField.firstName.value== undefined || inputField.firstName.value==null){
 	  
-			setInputField((prev)=>({...prev,firstName:{...prev["firstName"],error:'firstName canno\'t be empty!'}}))
-		  }
-		else{
-			  setInputField((prev)=>({...prev,"firstName":{...prev["firstName"],error:''}}))
+		// 	setInputField((prev)=>({...prev,firstName:{...prev["firstName"],error:'firstName canno\'t be empty!'}}))
+		//   }
+		// else{
+		// 	  setInputField((prev)=>({...prev,"firstName":{...prev["firstName"],error:''}}))
 	  
-		  }
-		if(inputField.firstName.value=='' || inputField.firstName.value== undefined || inputField.firstName.value==null){
+		//   }
+		// if(inputField.firstName.value=='' || inputField.firstName.value== undefined || inputField.firstName.value==null){
 	  
-			setInputField((prev)=>({...prev,firstName:{...prev["firstName"],error:'firstName canno\'t be empty!'}}))
-		  }
-		else{
-			  setInputField((prev)=>({...prev,"firstName":{...prev["firstName"],error:''}}))
+		// 	setInputField((prev)=>({...prev,firstName:{...prev["firstName"],error:'firstName canno\'t be empty!'}}))
+		//   }
+		// else{
+		// 	  setInputField((prev)=>({...prev,"firstName":{...prev["firstName"],error:''}}))
 	  
-		  }
+		//   }
+
+		const msg= await authObj.OTP_Verification(inputField.email.value);
+		
+		console.log(msg);
+
+		setPage((page)=>page+1);
+
 
 	}
 	const navigate =useNavigate();	

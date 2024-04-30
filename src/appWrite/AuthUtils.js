@@ -1,4 +1,4 @@
-import { Client,Account } from "appwrite";
+import { Client,Account, Databases, ID } from "appwrite";
 import auth from "./AuthConfig";
 
 class AuthUtil{
@@ -6,18 +6,21 @@ class AuthUtil{
 	
 
 	constructor(){
-		console.log(auth)
 		this.client= new Client().setEndpoint(auth.endpoint_url).setProject(auth.project_id);
 
 		this.account= new Account(this.client);
+
+		this.database=new Databases(this.client);
 
 		console.log(this.client);
 
 		console.log(this.account)
 	}	
 
-	async singUp(userId,email,password){
+	async singUp(email,password){
 		try{
+
+			const userId=ID.unique()
 
 			return await this.account.create(userId,email,password);
 			
@@ -41,6 +44,7 @@ class AuthUtil{
 	async deleteSession(sessionId){
 		
 		try{
+		
 		return await this.account.deleteSession(sessionId);
 		}
 		catch(error){
@@ -49,16 +53,28 @@ class AuthUtil{
 		}
 	}
 
-	// async getSession(sessionId){
-	// 	try{
-	// 		return await this.account.getSession(sessionId);
+	
 
+	async OAuthLogin() {
+        try {
+            // Use OAuthProvider instance to initiate OAuth login
+            return await account.createOAuth2Session('google');
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
 
-	// 	}catch(error){
-	// 		console.log(`error occured at GetSession method in AuthUtil`);
-	// 		return error;
-	// 	}
-	// }
+	async OTP_Verification(email){
+		try{
+			const userId=ID.unique()
+
+			return await this.account.createEmailToken(userId, email,true)
+		}	
+		catch(error){
+			console.log(`error occured at OTP_Verification method ${error}`);
+		}
+	}
+
 
 
 }
