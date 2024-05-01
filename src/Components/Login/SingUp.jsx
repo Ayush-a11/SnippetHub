@@ -8,22 +8,13 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { Link,useNavigate  } from 'react-router-dom'
 import authObj from '../../appWrite/AuthUtils';
+import { ID } from 'appwrite';
 function SingUp() {
 
-	// const [userName,setUserName] =useState();
-	// const [password,setPassword] = useState();
-	// const [firstName,setFirstName] = useState();
-	// const [lastName,setLastName] = useState();
-	// const [email,setEmail] = useState();
 	const [page,setPage] = useState(1);
-	// const [otp,setOtp] = useState()
 	const [togglePass, setTogglePass] =useState();
 
 	const [inputField,setInputField] = useState({
-		username:{
-				value:'',
-				error:''
-			},
 		password:{
 				value:'',
 				error:''
@@ -69,12 +60,15 @@ const handleForm=async(e)=>{
 
 	// }
 
+	const userId="6632695c003d8b88147d";
+	const msg2=await authObj.createSession(userId,inputField.otp.value);
+		console.log(msg2);	
 
 	// if(inputField.username.error!='' && inputField.password.error!=''){
-		console.log('success');
-		const msg=await authObj.singUp(inputField.email.value,inputField.password.value);
+		// console.log('success');
+		// const msg=await authObj.singUp(inputField.email.value,inputField.password.value);
 
-		console.log(msg);
+		// console.log(msg);
 	// }
 
 }
@@ -90,28 +84,50 @@ const handleOnChange = (fieldName, value)=>{
 	const NextPage = async(e)=>{
 		e.preventDefault();
 
-		// if(inputField.firstName.value=='' || inputField.firstName.value== undefined || inputField.firstName.value==null){
+		if(inputField.firstName.value=='' || inputField.firstName.value== undefined || inputField.firstName.value==null){
 	  
-		// 	setInputField((prev)=>({...prev,firstName:{...prev["firstName"],error:'firstName canno\'t be empty!'}}))
-		//   }
-		// else{
-		// 	  setInputField((prev)=>({...prev,"firstName":{...prev["firstName"],error:''}}))
+			setInputField((prev)=>({...prev,firstName:{...prev["firstName"],error:'firstName canno\'t be empty!'}}))
+		  }
+		else{
+			  setInputField((prev)=>({...prev,"firstName":{...prev["firstName"],error:''}}))
 	  
-		//   }
-		// if(inputField.firstName.value=='' || inputField.firstName.value== undefined || inputField.firstName.value==null){
+		  }
+		if(inputField.lastName.value=='' || inputField.lastName.value== undefined || inputField.lastName.value==null){
 	  
-		// 	setInputField((prev)=>({...prev,firstName:{...prev["firstName"],error:'firstName canno\'t be empty!'}}))
-		//   }
-		// else{
-		// 	  setInputField((prev)=>({...prev,"firstName":{...prev["firstName"],error:''}}))
+			setInputField((prev)=>({...prev,lastName:{...prev["lastName"],error:'lastName canno\'t be empty!'}}))
+		  }
+		else{
+			  setInputField((prev)=>({...prev,"lastName":{...prev["lastName"],error:''}}))
 	  
-		//   }
+		  }
+		if(inputField.email.value=='' || inputField.email.value== undefined || inputField.email.value==null){
+	  
+			setInputField((prev)=>({...prev,email:{...prev["email"],error:'email canno\'t be empty!'}}))
+		  }
+		else{
+			  setInputField((prev)=>({...prev,"email":{...prev["email"],error:''}}))
+	  
+		  }
 
-		const msg= await authObj.OTP_Verification(inputField.email.value);
+
+
+		if(inputField.firstName.error=='' && inputField.lastName.error=='' && inputField.email.error==''){
+		const userId=ID.unique()
+		
+		try{
+		const msg= await authObj.OTP_Verification(userId,inputField.email.value);
 		
 		console.log(msg);
-
 		setPage((page)=>page+1);
+
+		}
+		catch(err){
+			setInputField((prev)=>({...prev,"email":{...prev["email"],error:'enter valid email'}}))
+		}
+
+		}
+		
+
 
 
 	}
@@ -160,13 +176,7 @@ const handleOnChange = (fieldName, value)=>{
 				   style={inputField.lastName.error!=''?" border-b-4 border-red-500":""}
 			/>
 			{inputField.lastName.error!=''&&<span className="text-red-500 ">{inputField.lastName.error}</span>}
-			<Input label='UserName'
-				   type="text"
-				   value={inputField?.username?.value}
-				   onChange={(e) =>handleOnChange('username',e.target.value)}
-				   style={inputField.username.error!=''?" border-b-4 border-red-500":""}
-				   />
-			{inputField.username.error!=''&&<span className="text-red-500 ">{inputField.username.error}</span>}
+			
 			<Input label='Email'
 				   type="email"
 				   value={inputField?.email?.value}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Input from '../CommonUtility/Input'
-import LoginGif from '../../assets/Login.gif'
+import LoginGif from '../../assets/BgLogin.gif'
 import '../../../src/index.css'
 import { Link,useNavigate  } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +8,7 @@ import { faClose, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import authObj from '../../appWrite/AuthUtils';
 import { setLogin } from '../Store/GameSlice';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 
 function Login() {
@@ -27,6 +28,11 @@ function Login() {
 	const navigate =useNavigate();
 
 	
+	const googleSignIn=async(e)=>{
+		e.preventDefault();
+		const msg=await authObj.OAuthLogin();
+		console.log(msg)
+	}
 
 	const handleForm= async(e)=>{
 		e.preventDefault();	
@@ -103,7 +109,7 @@ function Login() {
 			<h1 className="text-3xl my-2 text-purple-500 font-bold">Login</h1>
 		<div className="w-full flex justify-around">
 		<div className='w-full mx-2'>
-			<img className="w-full " src={LoginGif} />
+			<img className="w-full bg-blend-multiply " src={LoginGif} />
 		</div>
 		<div className=" flex flex-col items-center justify-evenly mx-2 ">
 		<form className='relative '>
@@ -121,17 +127,25 @@ function Login() {
 				   style={inputField.password.error!=''?" border-b-4 border-red-500":""}		
 			/>
 			
-		<button type='button'><FontAwesomeIcon onClick={()=>setTogglePass((prev)=>!prev)} className='cursor-pointer text-lg absolute bottom-1/2 right-1 mb-5    ' icon={togglePass?faEye:faEyeSlash}/>
+		<button type='button'><FontAwesomeIcon onClick={()=>setTogglePass((prev)=>!prev)} className='cursor-pointer text-lg absolute top-16 right-1 mt-3  text-purple-500  ' icon={togglePass?faEye:faEyeSlash}/>
 		</button>
 		{inputField.password.error!=''&&<span className="text-red-500 ">{inputField.password.error}</span>}
+		<Link to='/SignUp'> 	<h2 className="text-purple-500 my-2">don't have an account? SignUp</h2> </Link> 
 
-		<Link to='/SignUp'> 	<h2 className="text-purple-500 my-2">don't have an account? SignUp</h2> </Link>   
 		<button className='max-w-fit my-5 dark:bg-black border-purple-500  text-textColor hover:bg-purple-500 hover:text-purple-500 border-2
-		hover:border-2 hover:border-black p-1 px-2 rounded-lg'onClick={(e)=>handleForm(e)} >Submit</button>
+		hover:border-2 hover:border-black p-1 px-2 rounded-lg'onClick={(e)=>handleForm(e)} >Login</button>
+		
+		<h2 className="text-purple-500 my-2">OR</h2> 
+		<button className='w-full my-3 dark:bg-black border-purple-500  text-textColor hover:bg-purple-500 hover:text-purple-500 border-2
+		hover:border-2 hover:border-black p-1 px-2 rounded-lg'onClick={(e)=>googleSignIn(e)} >Sign In with <FontAwesomeIcon className="text-purple-500" icon={faGoogle}/></button>
+
+		
+		
 		</form>
 		</div>
 		</div>
 		</div>
+		
 		<FontAwesomeIcon onClick={closeModal} className='text-purple-500 text-2xl hover:scale-150 duration-300 cursor-pointer m-2 ' icon={faClose}/>
 
 	</div>

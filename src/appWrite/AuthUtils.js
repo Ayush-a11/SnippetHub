@@ -58,20 +58,29 @@ class AuthUtil{
 	async OAuthLogin() {
         try {
             // Use OAuthProvider instance to initiate OAuth login
-            return await account.createOAuth2Session('google');
+            return await this.account.createOAuth2Session('google');
         } catch (ex) {
             console.log(ex);
         }
     }
 
-	async OTP_Verification(email){
+	async OTP_Verification(userId,email){
 		try{
-			const userId=ID.unique()
 
 			return await this.account.createEmailToken(userId, email,true)
 		}	
 		catch(error){
 			console.log(`error occured at OTP_Verification method ${error}`);
+		}
+	}
+
+	async createSession(userId,secret){
+		try{
+			return await this.account.createSession(userId,secret);
+		}
+		catch(error){
+			console.log(`error occured at OTP_Verification method ${error}`);
+			return false;
 		}
 	}
 
