@@ -17,6 +17,25 @@ class AuthUtil{
 		console.log(this.account)
 	}	
 
+	async createDocument(firstName,lastName,email,password){
+		try{
+			return await 
+				this.database.createDocument
+					(auth.database_id,auth.collection_id,ID.unique(),
+					{
+						firstName,
+						lastName,
+						email,
+						password
+					}
+					);
+		}
+		catch(error){
+			console.log(`Error creating document for ${error}`);
+			return false
+		}
+	}
+
 	async singUp(email,password){
 		try{
 
@@ -33,7 +52,7 @@ class AuthUtil{
 	}
 	async loginWithEmail(email,password){
 		try{
-			 return await this.account.createEmailSession(email,password);
+			 return await this.account.createEmailPasswordSession(email,password);
 		}
 		catch(error){
 			console.log(`error occured at LoginWithEmail method in AuthUtil ${error}`);
@@ -58,7 +77,7 @@ class AuthUtil{
 	async OAuthLogin() {
         try {
             // Use OAuthProvider instance to initiate OAuth login
-            return await this.account.createOAuth2Session('google');
+            return await this.account.createOAuth2Session('google','http://localhost:5173','http://localhost:5173/Signup');
         } catch (ex) {
             console.log(ex);
         }

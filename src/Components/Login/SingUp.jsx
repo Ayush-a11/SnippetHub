@@ -60,10 +60,15 @@ const handleForm=async(e)=>{
 
 	// }
 
-	const userId="6632695c003d8b88147d";
-	const msg2=await authObj.createSession(userId,inputField.otp.value);
-		console.log(msg2);	
+	// const userId="6632695c003d8b88147d";
+	// const msg2=await authObj.createSession(userId,inputField.otp.value);
+	// console.log(msg2);	
 
+	//creating document
+
+	const msg3=await authObj.createDocument(inputField.firstName.value,inputField.lastName.value,inputField.email.value,inputField.password.value)
+	
+	console.log(msg3)
 	// if(inputField.username.error!='' && inputField.password.error!=''){
 		// console.log('success');
 		// const msg=await authObj.singUp(inputField.email.value,inputField.password.value);
@@ -114,16 +119,16 @@ const handleOnChange = (fieldName, value)=>{
 		if(inputField.firstName.error=='' && inputField.lastName.error=='' && inputField.email.error==''){
 		const userId=ID.unique()
 		
-		try{
-		const msg= await authObj.OTP_Verification(userId,inputField.email.value);
+		// try{
+		// const msg= await authObj.OTP_Verification(userId,inputField.email.value);
 		
-		console.log(msg);
+		// console.log(msg);
 		setPage((page)=>page+1);
 
-		}
-		catch(err){
-			setInputField((prev)=>({...prev,"email":{...prev["email"],error:'enter valid email'}}))
-		}
+		// }
+		// catch(err){
+		// 	setInputField((prev)=>({...prev,"email":{...prev["email"],error:'enter valid email'}}))
+		// }
 
 		}
 		
