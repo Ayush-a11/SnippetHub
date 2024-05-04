@@ -21,11 +21,12 @@ const GameSlice = createSlice({
 			state.Current=null;
 		},
 		setLogin(state,action){
+			console.log(action.payload)
 			state.user=action.payload;
 			state.isLoggedIn=true;
 		},
 		setLogout(state){
-			state.data=null;
+			state.user=null;
 			state.isLoggedIn=false;
 		}
 	}

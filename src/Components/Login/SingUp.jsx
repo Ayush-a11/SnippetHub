@@ -11,6 +11,7 @@ import authObj from '../../appWrite/AuthUtils';
 import { ID } from 'appwrite';
 function SingUp() {
 
+	// const navigate=useNavigate();
 	const [page,setPage] = useState(1);
 	const [togglePass, setTogglePass] =useState();
 
@@ -34,7 +35,7 @@ function SingUp() {
 		otp:{
 			value:'',
 			error:''
-		}
+		},error:''
 });
 
 const handleForm=async(e)=>{
@@ -42,40 +43,44 @@ const handleForm=async(e)=>{
 
 	console.log(inputField)
 	
-	// if(inputField.username.value=='' || inputField.username.value== undefined || inputField.username.value==null){
-	//   inputField.username.error='UserName canno\'t be empty!';
+	if(inputField.otp.value=='' || inputField.otp.value== undefined || inputField.otp.value==null){
+	  inputField.otp.error='otp canno\'t be empty!';
 
-	//   setInputField((prev)=>({...prev,username:{...prev["username"],error:'UserName canno\'t be empty!'}}))
-	// }
-	// else{
-	// 	setInputField((prev)=>({...prev,"username":{...prev["username"],error:''}}))
+	  setInputField((prev)=>({...prev,username:{...prev["otp"],error:'otp canno\'t be empty!'}}))
+	}
+	else{
+		setInputField((prev)=>({...prev,"otp":{...prev["otp"],error:''}}))
 
-	// }
-	// if(inputField.password.value=='' || inputField.password.value== undefined || inputField.password.value==null){
-	// 	setInputField((prev)=>({...prev,"password":{...prev["password"],error:'Password canno\'t be empty!'}}))
+	}
+	if(inputField.password.value=='' || inputField.password.value== undefined || inputField.password.value==null){
+		setInputField((prev)=>({...prev,"password":{...prev["password"],error:'Password canno\'t be empty!'}}))
 
-	// }	
-	// else{
-	// 	setInputField((prev)=>({...prev,"password":{...prev["password"],error:''}}))
+	}	
+	else{
+		setInputField((prev)=>({...prev,"password":{...prev["password"],error:''}}))
 
-	// }
+	}
 
-	// const userId="6632695c003d8b88147d";
-	// const msg2=await authObj.createSession(userId,inputField.otp.value);
-	// console.log(msg2);	
+	if(inputField.otp.error=='' && inputField.password.error==''){
 
+	const msg=await authObj.createSession(inputField.otp.value);
+	console.log(msg);	
+	if(msg.name='AppwriteException'){
+		setInputField((prev)=>({...prev,"error":msg.message}))
+	}
+	else{
 	//creating document
-
-	const msg3=await authObj.createDocument(inputField.firstName.value,inputField.lastName.value,inputField.email.value,inputField.password.value)
+	const msg2=await authObj.createDocument(inputField.firstName.value,inputField.lastName.value,inputField.email.value,inputField.password.value)
 	
-	console.log(msg3)
-	// if(inputField.username.error!='' && inputField.password.error!=''){
-		// console.log('success');
-		// const msg=await authObj.singUp(inputField.email.value,inputField.password.value);
+	if(msg2.name='AppwriteException'){
+		setInputField((prev)=>({...prev,"error":msg2.message}))
+	}
+	else{
+		navigate('/')
+	}
+	}
 
-		// console.log(msg);
-	// }
-
+	}
 }
 
 const handleOnChange = (fieldName, value)=>{
@@ -119,16 +124,16 @@ const handleOnChange = (fieldName, value)=>{
 		if(inputField.firstName.error=='' && inputField.lastName.error=='' && inputField.email.error==''){
 		const userId=ID.unique()
 		
-		// try{
-		// const msg= await authObj.OTP_Verification(userId,inputField.email.value);
-		
-		// console.log(msg);
-		setPage((page)=>page+1);
+		const msg= await authObj.OTP_Verification(userId,inputField.email.value);
+		console.log(msg);
 
-		// }
-		// catch(err){
-		// 	setInputField((prev)=>({...prev,"email":{...prev["email"],error:'enter valid email'}}))
-		// }
+		if(msg?.name='AppwriteException'){
+			setInputField((prev)=>({...prev,"error":msg.message}))
+		}
+		else{
+		setPage((page)=>page+1);
+		}
+	
 
 		}
 		

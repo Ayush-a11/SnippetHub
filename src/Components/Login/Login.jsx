@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 import authObj from '../../appWrite/AuthUtils';
 import { setLogin } from '../Store/GameSlice';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import Redirect from '../../appWrite/RedirectAuth';
+
 
 
 function Login() {
@@ -22,7 +24,8 @@ function Login() {
 								password:{
 										value:'',
 										error:''
-									}
+									},
+								error:''
 		});
 
 	const navigate =useNavigate();
@@ -32,6 +35,8 @@ function Login() {
 		e.preventDefault();
 		const msg=await authObj.OAuthLogin();
 		console.log(msg)
+		getUser();
+
 	}
 
 	const handleForm= async(e)=>{
@@ -57,27 +62,26 @@ function Login() {
 
 		}
 
+		console.log(inputField)
 
-		// if(inputField.email.error!='' && inputField.password.error!=''){
-		// 	console.log('success');
+		if(inputField.email.error=='' && inputField.password.error==''){
+			console.log('success');
 
 			const user= await authObj.loginWithEmail(inputField.email.value,inputField.password.value)
 			
-			console.log('login',user);
+			if(user?.name=="AppwriteException"){
+				setInputField((prev)=>({...prev,"error":user.message}))
 
-			if(user){
+			}
+			else{
 				dispatch(setLogin(user))
 				navigate('/')
 			}
-			else{
+			console.log('login',user);
 
-			}
+			console.log(inputField)
 
-			// const newmsg= await authObj.deleteSession(msg.$id);
-
-			// console.log('delete',newmsg);
-
-		// }
+		}
 
 	}
 
@@ -96,6 +100,21 @@ function Login() {
 
 		}
 	})
+
+	const getUser = async()=>{
+		const user= await authObj.GetCurrentUser();
+		console.log('login page',user)
+
+		if(user){
+			dispatch(setLogin(user));
+			navigate('/')
+		}
+	}
+	//Get Current session data on Load...
+	useEffect( ()=>{
+		getUser();
+
+	},[])
 
 	const closeModal=()=>{
 		navigate("/");
@@ -132,6 +151,8 @@ function Login() {
 		{inputField.password.error!=''&&<span className="text-red-500 ">{inputField.password.error}</span>}
 		<Link to='/SignUp'> 	<h2 className="text-purple-500 my-2">don't have an account? SignUp</h2> </Link> 
 
+		{inputField.error!=''&&<span className="text-red-500 ">{inputField.error}</span>}
+		<br/>
 		<button className='max-w-fit my-5 dark:bg-black border-purple-500  text-textColor hover:bg-purple-500 hover:text-purple-500 border-2
 		hover:border-2 hover:border-black p-1 px-2 rounded-lg'onClick={(e)=>handleForm(e)} >Login</button>
 		

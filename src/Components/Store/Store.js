@@ -3,7 +3,11 @@ import GameSlice from './GameSlice';
 import reducers from './GameSlice';
 
 const store=configureStore({
-  reducer: reducers
+  reducer: reducers,
+  middleware: getDefaultMiddleware =>
+		getDefaultMiddleware({
+		  serializableCheck: false,
+		}),
 
 })
 

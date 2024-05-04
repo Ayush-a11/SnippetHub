@@ -19,7 +19,7 @@ function Header() {
 
 	const handleLogout = async()=>{
 		
-		const msg=authObj.deleteSession(selector?.user?.$id);
+		const msg= await authObj.deleteSession(selector?.user?.$id);
 		console.log(msg);
 		dispatch(setLogout());
 		navigate('/Login')

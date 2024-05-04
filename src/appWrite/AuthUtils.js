@@ -36,6 +36,17 @@ class AuthUtil{
 		}
 	}
 
+	async GetCurrentUser(){
+        try{
+			const user =await  this.account.getSession('current');
+			return user
+		}
+		catch(error){
+			console.log("Error Fetching Current User Data :: GetCurrentUser function", error);
+		}
+		
+	}
+
 	async singUp(email,password){
 		try{
 
@@ -56,7 +67,7 @@ class AuthUtil{
 		}
 		catch(error){
 			console.log(`error occured at LoginWithEmail method in AuthUtil ${error}`);
-			return false; 	
+			return error; 	
 		}
 	}
 
