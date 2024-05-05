@@ -94,13 +94,16 @@ class AuthUtil{
         }
     }
 
-	async OTP_Verification(userId,email){
+	async OTP_Verification(email){
 		try{
 
+			console.log(this.account)
+			const userId=ID.unique();
 			return await this.account.createEmailToken(userId, email,true)
 		}	
 		catch(error){
 			console.log(`error occured at OTP_Verification method ${error}`);
+			return error;
 		}
 	}
 

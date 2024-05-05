@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import Input from '../CommonUtility/Input'
-import LoginGif from '../../assets/Login.gif'
+import LoginGif from '../../assets/BgLogin.gif'
 import '../../../src/index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
@@ -124,10 +124,10 @@ const handleOnChange = (fieldName, value)=>{
 		if(inputField.firstName.error=='' && inputField.lastName.error=='' && inputField.email.error==''){
 		const userId=ID.unique()
 		
-		const msg= await authObj.OTP_Verification(userId,inputField.email.value);
+		const msg= await authObj.OTP_Verification(inputField.email.value);
 		console.log(msg);
 
-		if(msg?.name='AppwriteException'){
+		if(msg.name='AppwriteException'){
 			setInputField((prev)=>({...prev,"error":msg.message}))
 		}
 		else{
@@ -196,6 +196,8 @@ const handleOnChange = (fieldName, value)=>{
 			{inputField.email.error!=''&&<span className="text-red-500 ">{inputField.email.error}</span>}
 		<Link to='/Login'>	<h2 className="text-purple-500 my-2">Already an account? Login</h2>		   
 		</Link>
+		{inputField.error!=''&&<span className="text-red-500 ">{inputField.error}</span>}
+		<br/>
 		<button type='button' className='max-w-fit my-5 dark:bg-black border-purple-500  text-textColor hover:bg-purple-500 hover:text-purple-500 border-2
 		hover:border-2 hover:border-black p-1 px-2 rounded-lg'onClick={(e)=>NextPage(e)} >Next</button>
 
@@ -220,6 +222,8 @@ const handleOnChange = (fieldName, value)=>{
 			<Link to='/Login'><h2 className="text-purple-500 my-2">Already an account? Login</h2>		   </Link>
 			<button type='button'><FontAwesomeIcon onClick={()=>setTogglePass((prev)=>!prev)} className='cursor-pointer text-lg relative bottom-16 left-32  ' icon={togglePass?faEye:faEyeSlash}/>
 		</button>
+		{inputField.error!=''&&<span className="text-red-500 ">{inputField.error}</span>}
+		<br/>
 		<div className="flex  justify-evenly">
 		<button className='max-w-fit my-5 dark:bg-black border-purple-500  text-textColor hover:bg-purple-500 hover:text-purple-500 border-2
 		hover:border-2 hover:border-black p-1 px-2 rounded-lg'onClick={(e)=>setPage((prev)=>prev-1)} >Prev</button>
