@@ -99,7 +99,7 @@ class AuthUtil{
 
 			console.log(this.account)
 			const userId=ID.unique();
-			return await this.account.createEmailToken(userId, email,true)
+			return await this.account.createVerification(email)
 		}	
 		catch(error){
 			console.log(`error occured at OTP_Verification method ${error}`);
