@@ -25,6 +25,7 @@ function Home() {
       <Accordion devMode={devMode}/>
       {/* <MoviesPagination devMode={devMode}/> */}
       <InfiniteScroll devMode={devMode}/>
+    
       </div>
     </div>
 	</>
