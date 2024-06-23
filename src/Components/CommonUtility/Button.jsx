@@ -1,10 +1,10 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 
-function Button() {
+function Button({onClick,icon}) {
   return (
 	<div>
-		<button className=' dark:bg-black dark:text-primary text-primary border-primary font-sans font-bold hover:bg-primary hover:text-black border-2
-		hover:border-2 hover:border-black p-2 px-4 rounded-2xl' ><FontAwesomeIcon className='' icon={faInstagram} /></button>
+		<button onClick={onClick} className=' text-white border-2 border-hovCol rounded-sm bg-buttonCol p-1 px-4' ><FontAwesomeIcon className='' icon={icon} /></button>
 	</div>
   )
 }

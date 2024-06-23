@@ -95,7 +95,7 @@ function InfiniteScroll({ devMode }) {
             </div>
           </div>
         ))}
-        <div ref={sentinelRef} className="h-10 bg-blue-500"></div>
+        <div ref={sentinelRef} className="h-10 bg-transparent"></div>
       </div>
     </div>
   );

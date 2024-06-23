@@ -7,6 +7,7 @@ import LeftMenuBar from '../../Components/LeftMenuBar/LeftMenuBar'
 import Accordion from '../../Components/Accordion/Accordion'
 
 import InfiniteScroll from '../../Components/InfiniteScroll/InfiniteScroll'
+import Drag_N_Drop from '../Drag_N_Drop/Drag_N_Drop'
 function Home() {
   const [count, setCount] = useState(0)
   const [devMode,setDevMode] =useState(false)
@@ -25,7 +26,7 @@ function Home() {
       <Accordion devMode={devMode}/>
       {/* <MoviesPagination devMode={devMode}/> */}
       <InfiniteScroll devMode={devMode}/>
-    
+      <Drag_N_Drop devMode={devMode}/>
       </div>
     </div>
 	</>
