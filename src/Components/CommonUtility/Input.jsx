@@ -23,7 +23,7 @@ function Input({ label = "", style = "", type = "text", placeholder = "", value 
    <div onClick={handleFocus} className={`relative self-start ${focused?'top-2 text-xs bg-black  border-textColor':'top-7 text-base'} rounded-lg px-2 transition-all duration-300 font-bold text-textColor  ml-3`}>{label}</div>
       <input
         type={type}
-        className={`outline-none bg-boxcol bg-opacity-80  w-72 rounded-lg pl-4 pr-8 py-2 focus:textColor ${style}`}
+        className={`outline-none bg-boxcol bg-opacity-80 text-textColor  w-72 rounded-lg pl-4 pr-8 py-2 focus:textColor ${style}`}
         value={value}
         onFocus={handleFocus}
         onBlur={handleBlur}

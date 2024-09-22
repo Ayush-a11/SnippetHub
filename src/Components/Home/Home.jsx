@@ -8,6 +8,7 @@ import Accordion from '../../Components/Accordion/Accordion'
 
 import InfiniteScroll from '../../Components/InfiniteScroll/InfiniteScroll'
 import Drag_N_Drop from '../Drag_N_Drop/Drag_N_Drop'
+import PaymentCard from '../Payment/PaymentCard'
 function Home() {
   const [count, setCount] = useState(0)
   const [devMode,setDevMode] =useState(false)
@@ -27,6 +28,7 @@ function Home() {
       {/* <MoviesPagination devMode={devMode}/> */}
       <InfiniteScroll devMode={devMode}/>
       <Drag_N_Drop devMode={devMode}/>
+      <PaymentCard/>
       </div>
     </div>
 	</>
